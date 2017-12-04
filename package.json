@@ -1,0 +1,20 @@
+{
+    "name": "unblock-buildkite-pr-job",
+    "description": "A web service service that unblocks Buildkite PR jobs",
+    "version": "0.1.0",
+    "repository": "git://github.com/avtar/unblock-buildkite-pr-job.git",
+    "dependencies": {
+        "gpii-express": "^1.0.11",
+        "gpii-launcher": "^1.0.0-dev.20170725T121231Z.ac68c76",
+        "infusion": "^3.0.0-dev.20171117T095227Z.67ff934",
+        "nodemon": "^1.12.1",
+        "request": "^2.83.0",
+        "request-promise-native": "^1.0.5"
+    },
+    "engines": {
+        "node": ">=8.9.0"
+    },
+    "scripts": {
+        "start": "node launch.js"
+    }
+}
