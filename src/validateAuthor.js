@@ -24,16 +24,16 @@ fluid.defaults("unblock.job.validateAuthor.handler", {
 unblock.job.validateAuthor.handleRequest = async function (that) {
     fluid.log("Validating pull request author...");
 
-    var accountRepoString = unblock.job.validateAuthor.getRepositoryFullName(
-        that.options.request.body.pipeline.repository
-    );
-    var contributorsApiUrl = unblock.job.validateAuthor.constructGithubContributorsUrl(
-        that.options.github.apiHost,
-        accountRepoString
-    );
     var result;
 
     try {
+        var accountRepoString = unblock.job.validateAuthor.getRepositoryFullName(
+            that.options.request.body.pipeline.repository
+        );
+        var contributorsApiUrl = unblock.job.validateAuthor.constructGithubContributorsUrl(
+            that.options.github.apiHost,
+            accountRepoString
+        );
         result = await unblock.job.validateAuthor.getContributors(
             contributorsApiUrl,
             that.options.github.apiHost,
@@ -100,8 +100,8 @@ unblock.job.validateAuthor.getContributors = async function (url, apiHost, apiVe
         {
             query: query
         }
-    ).then(function (contributors) {
-        return contributors.map(function (user) {
+    ).then(function (result) {
+        return result.map(function (user) {
             return user.login;
         });
     });

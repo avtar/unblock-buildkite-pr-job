@@ -56,11 +56,10 @@ fluid.defaults("unblock.job.handler", {
 unblock.job.handleRequest = async function (that) {
     fluid.log("Attempting to unblock job...")
 
-    var buildUrl = that.options.request.body.build.url;
-    var bkAccessToken = that.options.buildkite.accessToken;
-    var jobLabel = that.options.buildkite.jobLabel;
-
     try {
+        var buildUrl = that.options.request.body.build.url;
+        var bkAccessToken = that.options.buildkite.accessToken;
+        var jobLabel = that.options.buildkite.jobLabel;
         var unblockUrl = await unblock.job.getUnblockUrl(buildUrl, bkAccessToken, jobLabel);
         var isUnblocked = await unblock.job.unblockJob(
             unblockUrl,
@@ -83,8 +82,8 @@ unblock.job.getUnblockUrl = async function (buildUrl, accessToken, jobLabel) {
         buildUrl,
         undefined,
         { Authorization: "Bearer " + accessToken }
-    ).then(function (response) {
-        var job = response.jobs.filter(function (job) {
+    ).then(function (result) {
+        var job = result.jobs.filter(function (job) {
             return job.label === jobLabel;
         })[0];
 

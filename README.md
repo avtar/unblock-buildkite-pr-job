@@ -37,8 +37,8 @@ The following environment variables are mandatory:
 
 These variables are optional:
 
+* ``GITHUB_ACCESS_TOKEN``: There is no default but GitHub will limit unauthenticated requests to 60 per hour. To have a higher limit please provide [a token](https://github.com/settings/tokens/new) with the ``repo`` scope
 * ``TCP_PORT``: Defaults to 3000
-* ``GITHUB_ACCESS_TOKEN``: There is no default but GitHub will limit requests to 60 per hour if a token is not provided
 
 ## Build image
 
